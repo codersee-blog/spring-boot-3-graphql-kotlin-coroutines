@@ -1,0 +1,41 @@
+type Query {
+  article(id: ID!): Article
+  articles: [Article!]!
+}
+
+type Mutation {
+  createArticle(input: CreateArticleInput!): Article!
+  addComment(articleId: ID!, input: AddCommentInput!): Comment
+}
+
+input CreateArticleInput {
+  title: String!
+  content: String!
+  userId: ID!
+}
+
+input AddCommentInput {
+  userId: String!
+  content: String!
+}
+
+type User {
+  id: ID!
+  name: String!
+}
+
+type Article {
+  id: ID!
+  title: String!
+  content: String!
+  author: User!
+  comments: [Comment!]!
+  createdAt: String!
+}
+
+type Comment {
+  id: ID!
+  content: String!
+  author: User
+}
+
